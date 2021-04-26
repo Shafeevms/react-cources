@@ -1,5 +1,4 @@
-import { GET_CARDS_LIST, FILTER } from './actionTypes';
-import { ERROR } from './actionTypes';
+import * as TYPES from './actionTypes';
 
 const URL = 'https://krapipl.imumk.ru:8443/api/mobilev1/update';
 
@@ -14,13 +13,13 @@ export const getCardsList = () => (
         throw new Error(errorMessage);
       }
       dispatch({
-        type: GET_CARDS_LIST,
+        type: TYPES.GET_CARDS_LIST,
         payload: items,
       });
     } catch (e) {
       console.log(e);
       dispatch({
-        type: ERROR,
+        type: TYPES.ERROR,
         payload: e.message
       });
     }
@@ -30,7 +29,16 @@ export const getCardsList = () => (
 export const filter = (value) => (
   dispatch => {
     dispatch({
-      type: FILTER,
+      type: TYPES.FILTER_BY_SUBJECT,
+      payload: value
+    });
+  }
+);
+
+export const search = (value) => (
+  dispatch => {
+    dispatch({
+      type: TYPES.SEARCH,
       payload: value
     });
   }

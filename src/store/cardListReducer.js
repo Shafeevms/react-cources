@@ -1,4 +1,4 @@
-import { ERROR, GET_CARDS_LIST } from './actionTypes';
+import * as TYPES from './actionTypes';
 
 const initialState = {
   data: [],
@@ -7,12 +7,12 @@ const initialState = {
 
 export const cardListReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_CARDS_LIST:
+    case TYPES.GET_CARDS_LIST:
       return {
         ...state,
         data: action.payload
       };
-    case ERROR:
+    case TYPES.ERROR:
       return {
         ...state,
         er: action.payload

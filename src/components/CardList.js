@@ -1,29 +1,37 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCardsList } from '../store/actionCreaters';
-import { gradesString } from '../helpers';
+import { gradesString, searchString } from '../helpers';
 
 const CardList = () => {
   const [money, setMoney] = useState('рубли');
   const dispatch = useDispatch();
-  let { data, er } = useSelector(store => store.cardList);
-  const filteredData = useSelector(store => store.filter);
-  // console.log(data, filteredData);
-  // console.log(data.filter(el => el.subject  === filteredData));
+  const { data, er } = useSelector(store => store.cardList);
+  const { filterBySubject, filterByGenre, filterByGrade, search } = useSelector(store => store.filter);
+  console.log('data', data);
 
   useEffect(() => {
     dispatch(getCardsList());
   }, [dispatch]);
 
-  // const filteredCardList = useMemo(() => data.filter(el => el.subject === filteredData || ''), [filteredData]);
-  const filteredCardList = useMemo(() => data.filter(el => {
-    if (filteredData === '') {
-      return true;
+  const filteredCardList = useMemo(() => {
+    let result;
+    if (filterBySubject) {
+      result = data.filter(el => el.subject.includes(filterBySubject));
     }
-    if (el.subject === filteredData) {
-      return true;
+    if (filterByGenre) {
+      result = data.filter(el => el.genre.includes(filterByGenre));
     }
-  }), [filteredData]);
+    if (filterByGrade) {
+      result = data.filter(el => el.grade.includes(filterByGrade));
+    }
+    if (search) {
+      result = searchString(result, search);
+    }
+    console.log('result', result);
+    return result;
+  }, [data, search, filterBySubject, filterByGenre, filterByGrade]);
+  console.log('filteredCardList', filteredCardList);
 
   return (
     <main className="container">

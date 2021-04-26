@@ -1,11 +1,25 @@
-import { FILTER } from './actionTypes';
+import * as TYPES from './actionTypes';
 
-const initialState = '';
+const initialState = {
+  filterBySubject: '',
+  filterByGenre: '',
+  filterByGrade: '',
+  search: '',
+};
 
 export const filterReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FILTER:
-      return action.payload;
+    case TYPES.FILTER_BY_SUBJECT:
+      return {
+        ...state,
+        filterBySubject: action.payload
+      };
+    case TYPES.SEARCH:
+      return {
+        ...state,
+        search: action.payload
+      };
+    default:
+      return state;
   }
-  return state;
 };
