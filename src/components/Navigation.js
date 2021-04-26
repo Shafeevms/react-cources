@@ -20,11 +20,11 @@ const Navigation = () => {
           <select className="navigation__select" onChange={changeHandler}>
             {
               subjects.map((subj, index) => (
-                <option value={subj} key={index}>{subj}</option>
+                <option value={subj === 'Все предметы' ? '' : subj} key={index}>{subj}</option>
               ))
             }
           </select>
-          <select className="navigation__select">
+          <select className="navigation__select" onChange={changeHandler}>
             {
               genres.map((genre, index) => (
                 <option value={genre} key={index}>{genre}</option>

@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector, useMemo } from 'react-redux';
 import { getCardsList } from '../store/actionCreaters';
 import { gradesString } from '../helpers';
 
@@ -8,22 +8,19 @@ const CardList = () => {
   const dispatch = useDispatch();
   let { data, er } = useSelector(store => store.cardList);
   const filteredData = useSelector(store => store.filter);
-  // console.log(data, filteredData);
-  // console.log(data.filter(el => el.subject  === filteredData));
+  console.log(data, filteredData);
+  console.log(data.filter(el => el.subject  === filteredData));
 
   useEffect(() => {
     dispatch(getCardsList());
   }, [dispatch]);
 
-  // const filteredCardList = useMemo(() => data.filter(el => el.subject === filteredData || ''), [filteredData]);
-  const filteredCardList = useMemo(() => data.filter(el => {
-    if (filteredData === '') {
-      return true;
-    }
-    if (el.subject === filteredData) {
-      return true;
-    }
-  }), [filteredData]);
+  // useEffect(() => {
+  //   data = data.filter(el => el.subject  === filteredData);
+  //   console.log(data);
+  // }, [filteredData]);
+
+  const filtredCardList = useMemo(() => data.filter(el => el.subject === filtredData), [filtredData]);
 
   return (
     <main className="container">
@@ -35,7 +32,7 @@ const CardList = () => {
         {
           er
             ? <li>Не удалось загрузить данные...</li>
-            : filteredCardList.map(card => (
+            : data.map(card => (
               <li className="cardlist__item article" key={card.courseId}>
                 <img className="article__img" src="./img/4306.png" alt={card.subject} />
                 <article className="article__content">
