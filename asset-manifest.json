@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/react-cources/static/css/main.433272ac.chunk.css",
+    "main.js": "/react-cources/static/js/main.7246feaf.chunk.js",
+    "main.js.map": "/react-cources/static/js/main.7246feaf.chunk.js.map",
+    "runtime-main.js": "/react-cources/static/js/runtime-main.aca67715.js",
+    "runtime-main.js.map": "/react-cources/static/js/runtime-main.aca67715.js.map",
+    "static/js/2.99b7f497.chunk.js": "/react-cources/static/js/2.99b7f497.chunk.js",
+    "static/js/2.99b7f497.chunk.js.map": "/react-cources/static/js/2.99b7f497.chunk.js.map",
+    "index.html": "/react-cources/index.html",
+    "static/css/main.433272ac.chunk.css.map": "/react-cources/static/css/main.433272ac.chunk.css.map",
+    "static/js/2.99b7f497.chunk.js.LICENSE.txt": "/react-cources/static/js/2.99b7f497.chunk.js.LICENSE.txt",
+    "static/media/index.scss": "/react-cources/static/media/SegoeUI.7d57fcab.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.aca67715.js",
+    "static/js/2.99b7f497.chunk.js",
+    "static/css/main.433272ac.chunk.css",
+    "static/js/main.7246feaf.chunk.js"
+  ]
+}
