@@ -15,15 +15,15 @@ const CardList = () => {
   }, [dispatch]);
 
   const filteredCardList = useMemo(() => {
-    let result;
+    let result = data;
     if (filterBySubject) {
       result = data.filter(el => el.subject.includes(filterBySubject));
     }
     if (filterByGenre) {
-      result = data.filter(el => el.genre.includes(filterByGenre));
+      result = result.filter(el => el.genre.includes(filterByGenre));
     }
     if (filterByGrade) {
-      result = data.filter(el => el.grade.includes(filterByGrade));
+      result = result.filter(el => el.grade.includes(filterByGrade));
     }
     if (search) {
       result = searchString(result, search);

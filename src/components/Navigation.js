@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { FILTER_BY_SUBJECT, SEARCH } from '../store/actionTypes';
+import * as TYPES from '../store/actionTypes';
 
 const subjects = ['Все предметы', 'Алгебра', 'Английский', 'Биология', 'География', 'Геометрия'];
 const genres = ['Все жанры', 'Демо', 'Задачник', 'Подготовка к ВПР', 'Подгтовка к ЕГЭ', 'Рабочая тетрадь'];
@@ -11,16 +11,30 @@ const Navigation = () => {
   const dispatch = useDispatch();
   const filterSubject = (e) => {
     dispatch({
-      type: FILTER_BY_SUBJECT,
+      type: TYPES.FILTER_BY_SUBJECT,
       payload: e.target.value
     });
   };
+  const filterGenre = (e) => {
+    dispatch({
+      type: TYPES.FILTER_BY_GENRE,
+      payload: e.target.value
+    });
+  };
+  const filterGrade = (e) => {
+    dispatch({
+      type: TYPES.FILTER_BY_GRADE,
+      payload: e.target.value
+    });
+  };
+
   const clickHandler = (e) => {
     e.preventDefault();
     dispatch({
-      type: SEARCH,
+      type: TYPES.SEARCH,
       payload: inputValue
     });
+    setInputValue('');
   };
   const changeHandlerInput = (e) => {
     setInputValue(e.target.value);
@@ -38,14 +52,14 @@ const Navigation = () => {
               ))
             }
           </select>
-          <select className="navigation__select" >
+          <select className="navigation__select" onChange={(e) => filterGenre(e)}>
             {
               genres.map((genre, index) => (
                 <option value={genre === 'Все жанры' ? '' : genre} key={index}>{genre}</option>
               ))
             }
           </select>
-          <select className="navigation__select" >
+          <select className="navigation__select" onChange={(e) => filterGrade(e)} >
             {
               classes.map((grade, index) => (
                 <option value={grade === 'Все классы' ? '' : grade} key={index}>{grade}</option>

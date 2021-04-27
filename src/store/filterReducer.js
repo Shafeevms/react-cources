@@ -12,7 +12,20 @@ export const filterReducer = (state = initialState, action) => {
     case TYPES.FILTER_BY_SUBJECT:
       return {
         ...state,
+        search: '',
         filterBySubject: action.payload
+      };
+    case TYPES.FILTER_BY_GENRE:
+      return {
+        ...state,
+        search: '',
+        filterByGenre: action.payload
+      };
+    case TYPES.FILTER_BY_GRADE:
+      return {
+        ...state,
+        search: '',
+        filterByGrade: action.payload
       };
     case TYPES.SEARCH:
       return {
